@@ -573,13 +573,17 @@ header.scrolled {
 
   #certifications .card-title {
     white-space: normal;
+    font-size: 1rem;
+    /* Standardized title size */
+    font-weight: 700;
   }
 }
 
 #certifications .card-content p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  /* Standardized body size */
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 .card-date {
