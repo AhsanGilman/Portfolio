@@ -1021,6 +1021,10 @@ Code: \f121 (code)
     margin: 0 auto 2rem;
   }
 
+  .hero-socials {
+    justify-content: center;
+  }
+
   h2::after {
     left: 50%;
     transform: translateX(-50%);
