@@ -65,14 +65,20 @@ h1 {
 h2 {
   font-size: 2.25rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
   position: relative;
   display: block;
   text-align: center;
 }
 
 h2::after {
-  display: none;
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(to right, var(--accent), var(--accent-hover));
+  border-radius: 2px;
+  margin: 10px auto 0;
 }
 
 h3 {
