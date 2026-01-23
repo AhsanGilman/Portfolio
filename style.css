@@ -519,7 +519,7 @@ header.scrolled {
   /* Fill card height */
   border-radius: 4px;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: none;
 }
 
 #certifications .card-img-wrapper img {
