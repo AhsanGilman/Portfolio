@@ -288,6 +288,35 @@ header.scrolled {
   transform: scale(1.02);
 }
 
+.circular-text {
+  position: absolute;
+  width: 310px;
+  height: 310px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.circular-text svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  /* animation: spin 30s linear infinite; Removed to keep text fixed at top */
+}
+
+.circular-text text {
+  font-family: var(--font-main);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  fill: #00695c;
+  /* Darker teal for better visibility/highlight */
+  text-transform: uppercase;
+}
+
+
 /* Cards (Education, Research, Publications) */
 .card-grid {
   display: grid;
@@ -1007,6 +1036,11 @@ Code: \f121 (code)
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 160px;
+    align-items: flex-start;
+  }
+
   h1 {
     font-size: 2.5rem;
   }
@@ -1055,8 +1089,18 @@ Code: \f121 (code)
     order: 1;
   }
 
+  .hero-image {
+    order: 1;
+    margin-top: 0;
+  }
+
   .hero-image img {
-    max-width: 300px;
+    max-width: 250px;
+  }
+
+  .circular-text {
+    width: 340px;
+    height: 340px;
   }
 
   .hero-subtitle {
