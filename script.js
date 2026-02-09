@@ -274,3 +274,173 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+document.addEventListener('DOMContentLoaded', () => {
+    /* Search Functionality */
+    const searchBtn = document.getElementById('search-btn');
+    const searchContainer = document.querySelector('.search-container');
+    const searchInput = document.getElementById('search-input');
+    const closeSearchBtn = document.getElementById('close-search');
+    const searchResults = document.getElementById('search-results');
+
+    // Toggle Search Bar
+    if (searchBtn) {
+        searchBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            searchContainer.classList.add('active');
+            searchInput.focus();
+        });
+    }
+
+    if (closeSearchBtn) {
+        closeSearchBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeSearch();
+        });
+    }
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!searchContainer.contains(e.target)) {
+            closeSearch();
+        }
+    });
+
+    function closeSearch() {
+        searchContainer.classList.remove('active');
+        searchInput.value = '';
+        searchResults.classList.remove('show');
+        searchResults.innerHTML = '';
+    }
+
+    // Index Content
+    let searchIndex = [];
+
+    function buildSearchIndex() {
+        const sections = document.querySelectorAll('section');
+        searchIndex = [];
+
+        sections.forEach(section => {
+            const sectionId = section.id;
+            const sectionTitle = section.querySelector('h2')?.innerText || sectionId;
+
+            // Text nodes
+            const walker = document.createTreeWalker(
+                section,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+
+            let node;
+            while (node = walker.nextNode()) {
+                const text = node.textContent.trim();
+                // Filter out short or empty text, and script/style content if any
+                if (text.length > 3 && node.parentElement.tagName !== 'SCRIPT' && node.parentElement.tagName !== 'STYLE') {
+                    searchIndex.push({
+                        text: text,
+                        sectionId: sectionId,
+                        sectionTitle: sectionTitle,
+                        element: node.parentElement
+                    });
+                }
+            }
+        });
+    }
+
+    // Build index initially
+    buildSearchIndex();
+
+    // Search Logic
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+
+        if (query.length < 2) {
+            searchResults.classList.remove('show');
+            searchResults.innerHTML = '';
+            return;
+        }
+
+        const results = searchIndex.filter(item => item.text.toLowerCase().includes(query));
+
+        // Deduplicate results based on element to avoid showing same paragraph multiple times if multiple matches in same node
+        const uniqueResults = [];
+        const seenElements = new Set();
+
+        results.forEach(item => {
+            if (!seenElements.has(item.element)) {
+                uniqueResults.push(item);
+                seenElements.add(item.element);
+            }
+        });
+
+        displayResults(uniqueResults, query);
+    });
+
+    function displayResults(results, query) {
+        searchResults.innerHTML = '';
+
+        if (results.length === 0) {
+            const noResult = document.createElement('div');
+            noResult.className = 'search-result-item';
+            noResult.textContent = 'No results found.';
+            searchResults.appendChild(noResult);
+        } else {
+            results.slice(0, 10).forEach(result => { // Limit to 10 results
+                const div = document.createElement('div');
+                div.className = 'search-result-item';
+
+                // Highlight matches in snippet
+                const lowerText = result.text.toLowerCase();
+                const index = lowerText.indexOf(query);
+                const start = Math.max(0, index - 20);
+                const end = Math.min(result.text.length, index + query.length + 40);
+                let snippet = result.text.substring(start, end);
+
+                if (start > 0) snippet = '...' + snippet;
+                if (end < result.text.length) snippet = snippet + '...';
+
+                // Highlighting in snippet
+                const regex = new RegExp(`(${query})`, 'gi');
+                const highlightedSnippet = snippet.replace(regex, '<span style="background-color: yellow; color: black;">$1</span>');
+
+                div.innerHTML = `
+                    <div class="search-result-title">${result.sectionTitle}</div>
+                    <div class="search-result-snippet">${highlightedSnippet}</div>
+                `;
+
+                div.addEventListener('click', () => {
+                    navigateToResult(result.element);
+                });
+
+                searchResults.appendChild(div);
+            });
+        }
+
+        searchResults.classList.add('show');
+    }
+
+    function navigateToResult(element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Flash Highlight
+        element.classList.add('highlight-flash');
+        setTimeout(() => {
+            element.classList.remove('highlight-flash');
+        }, 2000); // Remove after animation
+
+        // Close search (optional, or keep open?) - usually close on navigation
+        if (window.innerWidth < 768) {
+            // Close mobile menu if open
+            const navLinks = document.querySelector('.nav-links');
+            const mobileMenuBtn = document.getElementById('mobile-menu');
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+        // Force close search on clicking result for better UX?
+        // closeSearch(); 
+    }
+});
