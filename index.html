@@ -38,7 +38,7 @@
         content="Official Portfolio of Md Abu Ahsan Gilman (Ahsan Gilman). Researcher in microbial genomics and AMR.">
     <meta property="twitter:image" content="https://ahsangilman.github.io/images/doctor.png">
 
-    <link rel="stylesheet" href="style.css?v=1.0.0">
+    <link rel="stylesheet" href="style.css?v=1.1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- JSON-LD Structured Data -->
@@ -84,8 +84,7 @@
             </div>
             <nav class="nav-links">
                 <a href="#about">About</a>
-                <a href="#education">Education</a>
-                <a href="#research">Research</a>
+                <a href="#research">Experience</a>
                 <a href="#publications">Publications</a>
                 <a href="#skills">Skills</a>
                 <a href="#contact">Contact</a>
@@ -95,7 +94,7 @@
                         <input type="text" id="search-input" placeholder="Search...">
                         <button id="close-search" class="close-search"><i class="fas fa-times"></i></button>
                     </div>
-                    <div id="search-results" class="search-results"></div>
+                    <div id="search-results" class.search="search-results"></div>
                 </div>
             </nav>
         </div>
@@ -152,7 +151,6 @@
 
 
 
-
                     </svg>
                 </div>
                 <img src="images/doctor.png" alt="Md Abu Ahsan Gilman">
@@ -180,29 +178,24 @@
                     animal health, and the critical challenge of antimicrobial resistance (AMR).
                 </p>
             </div>
-        </div>
-    </section>
 
-    <!-- Education Section -->
-    <section id="education">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-header">
-                        <div>
+            <!-- Education Subsection -->
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Education</h3>
+            <div class="card-grid" style="margin-top: 0;">
+                <div class="card education-card">
+                    <div class="edu-layout">
+                        <div class="edu-logo-col">
+                            <img src="images/logo.jpg" alt="GAU Logo" class="edu-logo">
+                        </div>
+                        <div class="edu-text-col">
                             <div class="card-title">Doctor of Veterinary Medicine (DVM)</div>
                             <div class="card-subtitle">
-                                <i class="fas fa-university"></i> Gazipur Agricultural University (GAU)
+                                <i class="fas fa-university"></i> Gazipur Agricultural University (GAU), Bangladesh
+                            </div>
+                            <div class="edu-duration">
+                                <i class="far fa-calendar-alt"></i> 10 December 2019 – 21 January 2026
                             </div>
                         </div>
-                        <div class="card-date">Expected Jan 2026</div>
-                    </div>
-                    <div class="card-content">
-                        <ul>
-                            <li>Focus on Veterinary Medicine, Microbiology, and Genomics.</li>
-                            <li>Active researcher in molecular biology and bioinformatics.</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -212,24 +205,40 @@
     <!-- Research Experience -->
     <section id="research">
         <div class="container">
-            <h2>Research Experience</h2>
+            <h2>Experience</h2>
             <div class="card-grid">
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">Molecular Biology & Bioinformatics Laboratory</div>
-                            <div class="card-subtitle">
-                                <i class="fas fa-microscope"></i> Research Assistant / Student Researcher
+                <div class="card experience-card">
+                    <div class="exp-layout">
+                        <div class="exp-logo-col">
+                            <img src="images/MBBL_logo.png" alt="MBBL Logo" class="exp-logo">
+                        </div>
+                        <div class="exp-text-col">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Molecular Biology & Bioinformatics Laboratory, GAU,
+                                        Bangladesh</div>
+                                    <div class="card-subtitle">
+                                        <i class="fas fa-microscope"></i> Undergraduate Research Assistant
+                                    </div>
+                                    <div class="card-date"
+                                        style="position: static; margin-top: 0.5rem; background: transparent; padding: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                                        <i class="far fa-calendar-alt"></i> 4 November 2023 – 21 January 2026
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">
+                                    Activities</div>
+                                <ul>
+                                    <li>Performed wet-lab work: culture, Gram staining, AST, DNA/RNA extraction, PCR,
+                                        gel electrophoresis.</li>
+                                    <li>Analyzed NGS data (WGS, 16S, shotgun metagenomics) using Linux, R, Python.</li>
+                                    <li>Supported microbiome, metagenomics, and AMR research workflows.</li>
+                                    <li>Assisted with data interpretation, documentation, and manuscript preparation.
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-content">
-                        <ul>
-                            <li>Conducting genomics and metagenomics research.</li>
-                            <li>Investigating microbiome diversity in various environments.</li>
-                            <li>Analyzing Antimicrobial Resistance (AMR) patterns.</li>
-                            <li> utilizing bioinformatics tools for sequence analysis.</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -611,7 +620,7 @@
         <img class="modal-content" id="modalImage">
     </div>
 
-    <script src="script.js?v=1.0.0"></script>
+    <script src="script.js?v=1.1.0"></script>
 
 
 </body>

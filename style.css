@@ -369,6 +369,195 @@ header.scrolled {
   align-items: flex-start;
 }
 
+
+/* Education Logo Styles */
+.education-card {
+  padding: 0.8rem !important;
+  /* Reduced padding/height further */
+}
+
+.edu-layout {
+  display: flex;
+  gap: 1.25rem;
+  /* Slightly reduced gap */
+  align-items: center;
+  /* Align center vertically for compaction */
+}
+
+.edu-logo-col {
+  flex-shrink: 0;
+  width: 100px;
+  /* Reduced width */
+  /* Border removed */
+}
+
+.edu-logo {
+  width: 100%;
+  height: auto;
+  /* Maintain aspect ratio */
+  display: block;
+  object-fit: contain;
+}
+
+.edu-text-col {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Center content vertically */
+}
+
+.edu-text-col .card-title {
+  margin-bottom: 0.2rem;
+  /* Tighten title spacing */
+  font-size: 1.1rem;
+  /* Adjustment if needed */
+}
+
+.edu-text-col .card-subtitle {
+  margin-bottom: 0.2rem;
+  /* Tighten subtitle spacing */
+  font-size: 0.9rem;
+}
+
+
+.edu-duration {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.2rem;
+  /* Tighten duration spacing */
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Experience Card Specific Styles for Height Reduction & Compaction */
+.experience-card {
+  padding: 0.5rem !important;
+  /* Minimal padding */
+}
+
+.experience-card .card-header {
+  margin-bottom: 0.2rem;
+  /* Minimal margin */
+}
+
+.experience-card .card-title {
+  margin-bottom: 0.1rem;
+  font-size: 1rem;
+  /* Slightly smaller if needed, but spacing is key */
+  line-height: 1.1;
+  /* Tight line height */
+}
+
+.experience-card .card-subtitle {
+  margin-bottom: 0.1rem;
+  font-size: 0.85rem;
+  line-height: 1.1;
+}
+
+.experience-card .edu-duration {
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
+}
+
+.experience-card .card-content {
+  margin-top: 0.3rem;
+  /* Space before content */
+}
+
+.experience-card .card-content div {
+  /* "Activities" header */
+  margin-bottom: 0.2rem !important;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.experience-card .card-content ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 1rem;
+  /* Keep bullets aligned */
+}
+
+.experience-card .card-content li {
+  margin-bottom: 0.1rem;
+  /* Very tight list items */
+  line-height: 1.2;
+  /* Tight line height for list items */
+  font-size: 0.85rem;
+}
+
+/* Experience Layout (Logo + Text) */
+.exp-layout {
+  display: flex;
+  gap: 1rem;
+  /* Reduced gap */
+  align-items: flex-start;
+  /* Aligns logo and text to top */
+}
+
+.exp-logo-col {
+  flex-shrink: 0;
+  width: 100px;
+  /* FIXED width as requested */
+}
+
+.exp-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.exp-text-col {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* Ensure content starts at top */
+}
+
+@media (max-width: 576px) {
+
+  .edu-layout,
+  .exp-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .edu-text-col,
+  .exp-text-col {
+    width: 100%;
+    align-items: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .edu-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .edu-text-col {
+    width: 100%;
+    align-items: center;
+  }
+
+  .edu-duration {
+    justify-content: center;
+  }
+}
+
+
+#publications .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
 #publications .pub-img-wrapper {
   flex: 0 0 112px;
   /* Reduced width */
@@ -1280,11 +1469,14 @@ footer {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.5rem;
+  /* Reduced padding */
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  min-width: 200px;
+  gap: 1rem;
+  /* Reduced gap */
+  min-width: 160px;
+  /* Reduced min-width */
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -1296,11 +1488,14 @@ footer {
 }
 
 .stat-icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  /* Reduced icon size */
   color: var(--accent);
   background: rgba(13, 148, 136, 0.1);
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  /* Reduced dimension */
+  height: 50px;
+  /* Reduced dimension */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1308,7 +1503,8 @@ footer {
 }
 
 .stat-info h3 {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  /* Reduced font size */
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 0;
@@ -1317,7 +1513,8 @@ footer {
 
 .stat-info p {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  /* Slightly reduced font size */
   font-weight: 600;
   margin: 0;
   text-align: left;
@@ -1504,10 +1701,26 @@ footer {
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
+  .nav-links {
+    max-height: calc(100vh - 80px);
+    /* Ensure it fits on screen */
+    overflow-y: auto;
+    /* Enable scrolling */
+  }
+
   .search-container {
     margin-top: 1rem;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    flex-direction: column;
+    /* Stack items vertically */
+    align-items: stretch;
+  }
+
+  .search-btn {
+    align-self: flex-end;
+    /* Keep search icon to the right roughly, or adjust */
+    padding-right: 0;
   }
 
   .search-input-wrapper {
@@ -1516,16 +1729,25 @@ footer {
     top: 0;
     width: 100%;
     opacity: 1;
-    /* Always visible on mobile menu if desired, or toggleable */
+    /* Always visible on mobile menu if desired, or toggleable - keeping logic same */
   }
 
+  /* Reset padding/width for normal flow when active */
   .search-container.active .search-input-wrapper {
     width: 100%;
+    margin-right: 0;
   }
 
   .search-results {
     width: 100%;
     position: relative;
     box-shadow: none;
+    top: 0;
+    margin-top: 0.5rem;
+    z-index: 1002;
+    /* Ensure above other things */
+    max-height: none;
+    /* Let it grow or constrained? constrain to avoid super long */
+    /* better to match desktop max-height or slightly less */
   }
 }
