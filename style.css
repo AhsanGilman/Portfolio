@@ -494,7 +494,7 @@ header.scrolled {
   display: flex;
   gap: 1rem;
   /* Reduced gap */
-  align-items: flex-start;
+  align-items: center;
   /* Aligns logo and text to top */
 }
 
@@ -521,34 +521,59 @@ header.scrolled {
 
 @media (max-width: 576px) {
 
+  p,
+  .section-title-center p {
+    text-align: left;
+  }
+
   .edu-layout,
   .exp-layout {
     flex-direction: column;
     align-items: center;
+    /* Center the LOGO */
     text-align: center;
   }
 
   .edu-text-col,
   .exp-text-col {
     width: 100%;
-    align-items: center;
-  }
-}
-
-@media (max-width: 576px) {
-  .edu-layout {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    /* Default: Left align everything */
+    text-align: left;
   }
 
-  .edu-text-col {
+  /* Force CENTER alignment ONLY for the Title */
+  .edu-text-col .card-title,
+  .exp-text-col .card-title {
     width: 100%;
-    align-items: center;
+    text-align: center;
+    /* Optional: align-self: center if flex item, but width 100% handles text-align */
   }
 
+  /* Ensure Body Content stays left (redundant but safe) */
+  .edu-text-col .card-content,
+  .exp-text-col .card-content {
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Left align duration */
   .edu-duration {
-    justify-content: center;
+    justify-content: flex-start;
+  }
+
+  /* Reset Experience Header to Left Align */
+  .experience-card .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    /* Left align items */
+    text-align: left;
+    /* Left align text */
+    width: 100%;
+  }
+
+  .experience-card .card-header>div {
+    width: 100%;
   }
 }
 
