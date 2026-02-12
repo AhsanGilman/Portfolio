@@ -39,23 +39,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Smooth scrolling for anchor links (fallback/enhancement)
+    // Smooth scrolling with custom easing (to ensure animation works)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            if (targetId === '#' || !targetId) return;
 
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                const headerOffset = 70; // Header height
+                const headerOffset = 70;
+                // Calculate target position relative to the document
                 const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                const startPosition = window.pageYOffset;
+                const targetPosition = startPosition + elementPosition - headerOffset;
+                const distance = targetPosition - startPosition;
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
+                let startTime = null;
+                const duration = 800; // Duration in ms
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const nextScrollY = ease(timeElapsed, startPosition, distance, duration);
+
+                    window.scrollTo(0, nextScrollY);
+
+                    if (timeElapsed < duration) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        // Ensure we land exactly on the target
+                        window.scrollTo(0, targetPosition);
+                    }
+                }
+
+                // Ease function (easeInOutQuad)
+                function ease(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                }
+
+                requestAnimationFrame(animation);
+
+                // Close mobile menu if open
+                const navLinks = document.querySelector('.nav-links');
+                const mobileMenuBtn = document.getElementById('mobile-menu');
+                if (navLinks && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    if (mobileMenuBtn) {
+                        const icon = mobileMenuBtn.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                }
             }
         });
     });
